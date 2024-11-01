@@ -15,9 +15,17 @@ function App() {
   const [northingE, setNorthingE] = useState("");
   const [eastingA, setEastingA] = useState("");
   const [northingA, setNorthingA] = useState("");
+  const [Error, setError] = useState("");
 
   async function Berechnung() {
-    const props = { eastingE, northingE, setEastingA, setNorthingA };
+    const props = {
+      eastingE,
+      northingE,
+      Error,
+      setEastingA,
+      setNorthingA,
+      setError,
+    };
     if (methode === "LV95toWGS84") {
       await LV95toWGS84(props);
     } else if (methode === "WGS84toLV95") {
@@ -103,6 +111,11 @@ function App() {
             value={northingA}
             readOnly
           />
+        </Grid2>
+        <Grid2 xs={12}>
+          <Typography align="left" color="red">
+            {Error}
+          </Typography>
         </Grid2>
       </Grid2>
     </Box>
